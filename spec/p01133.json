@@ -11,14 +11,14 @@
     "json_object": "ccg_boundaries"
   },
   "legend": {
-    "title" : "Learning Disabilities Reported Prevalence",
+    "title" : "Learning Disabilities Reported Prevalence per 1000",
     "categories": [],
     "range": [8, 6.85, 5.71, 4.57, 3.42, 2.28, 1.14, 0],
     "colors": ["#225EA8","#1D91C0", "#41B6C4", "#7FCDBB", "#C7E9B4","#EDF8B1", "#FFFFD9"]
   },
   "infoBox": {
     "header": "<h3>Learning Disabilities Reported Prevalence per CCG</h3>",
-    "labels": ["CCG Code: ", "Estimated Patients: ", "Registered Patients: ", "Prevalence: "],
+    "labels": ["CCG Code: ", "Estimated Patients: ", "Registered Patients: ", "Prevalence per 1000: "],
     "fields": [
       "ccg_code",
       "estimated",
