@@ -1,0 +1,58 @@
+---
+title: "Mozfest 2014 CDE"
+author: "JLM"
+date: "26 October 2014"
+output: html_document
+---
+
+```
+require('reshape2')
+```
+
+First, grepped out the indicator code:
+
+    head -n 1 GPOutcomes/results.csv > p01133.csv
+    grep "P01133" GPOutcomes/results.csv >> p01133.csv
+    
+Got 24735 data lines.
+    
+```{r}
+p01133 <- read.csv('p01133.csv')
+```
+
+Discovery: The data we need is already there. Just look at P01133C.
+
+```{r}
+prevalence <- subset(p01133, Indicator_Code == 'P01133C')
+hist(prevalence$Value)
+```
+
+Calculate national prevalance. Estimated number is 'P01133A'; registered number of cases is 'P01133B'.
+
+```{r}
+sum(subset(p01133, Indicator_Code == 'P01133B')$Value) /
+  sum(subset(p01133, Indicator_Code == 'P01133A')$Value)
+```
+
+Get this into a nicer form, with one column per value we want.
+
+```{r}
+pKeys <- c('Practice_Code', 'Practice_Name', 'Indicator_Code', 'CCG', 'SHA_Code', 'SHA_Name', 'PCT_Code', 'PCT_Name')
+pMelt <- melt(p01133[,c(pKeys, 'Value')], pKeys)
+pCast <- dcast(pMelt, Practice_Code + Practice_Name + CCG + SHA_Code + SHA_Name + PCT_Code + PCT_Name ~ Indicator_Code + variable)
+```
+
+Aggregate up by CCG.
+
+```{r}
+pCCG <- aggregate(cbind(registered=P01133B_Value, estimated=P01133A_Value) ~ CCG, data = pCast, sum)
+pCCG <- transform(pCCG, prevalence = 1000*registered / estimated)
+names(pCCG)[1] <- 'ccg_code'
+write.csv(file="data/pCCG.csv", pCCG, row.names=FALSE)
+```
+
+Make some breaks for the nice spruce leaf plot:
+
+```{r}
+print(paste(seq(from=0,to=8,length.out=8), collapse=", "))
+```

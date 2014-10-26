@@ -1,0 +1,33 @@
+{
+  "div": "map",
+  "view": [53.0, -1.5],
+  "zoom": 6,
+  "data": {
+    "csv_url": "data/pCCG.csv",
+    "json_url": "data/ccg-boundaries.json"
+  },
+  "merge": {
+    "csv_key": "ccg_code",
+    "json_object": "ccg_boundaries"
+  },
+  "legend": {
+    "title" : "Learning Disabilities Reported Prevalence",
+    "categories": [],
+    "range": [0, 1.14, 2.28, 3.42, 4.57, 5.71, 6.85, 8],
+    "colors": ["#225EA8","#1D91C0", "#41B6C4", "#7FCDBB", "#C7E9B4","#EDF8B1", "#FFFFD9"]
+  },
+  "infoBox": {
+    "header": "<h3>Learning Disabilities Reported Prevalence per CCG</h3>",
+    "labels": ["CCG Code: ", "Estimated Patients: ", "Registered Patients: ", "Prevalence: "],
+    "fields": [
+      "ccg_code",
+      "estimated",
+      "registered",
+      "prevalence"
+    ],
+    "formats": [null, "0,0", "0,0", "0,0.00"]
+  },
+  "marks": {
+    "scaleField": "prevalence"
+  }
+}
