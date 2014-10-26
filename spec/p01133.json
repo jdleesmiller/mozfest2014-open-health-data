@@ -13,7 +13,7 @@
   "legend": {
     "title" : "Learning Disabilities Reported Prevalence",
     "categories": [],
-    "range": [0, 1.14, 2.28, 3.42, 4.57, 5.71, 6.85, 8],
+    "range": [8, 6.85, 5.71, 4.57, 3.42, 2.28, 1.14, 0],
     "colors": ["#225EA8","#1D91C0", "#41B6C4", "#7FCDBB", "#C7E9B4","#EDF8B1", "#FFFFD9"]
   },
   "infoBox": {
